@@ -1,287 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta name="google-site-verification" content="1s3_nZyNSrYwtKtgpRVZf-QurtamUWa2omXZy3i_7dE" />
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AAG APP 🔥 - Videos • Live Cricket • Games • Chat</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>AAG 🔥</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ctext y='50%' x='50%' text-anchor='middle' dominant-baseline='middle' font-size='120' fill='%23FF6600'%3E🔥%3C/text%3E%3C/svg%3E">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Playfair+Display:wght@700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Space+Grotesk:wght@500;600&display=swap');
         
-        :root { --fire: #ff4500; }
-        
-        body { font-family: 'Inter', sans-serif; }
-        
-        .hero-bg {
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a0000 100%);
-            position: relative;
+        body {
+            font-family: 'Inter', sans-serif;
             overflow: hidden;
-            padding-bottom: 100px; /* extra space to prevent overlap */
+            touch-action: none; /* blocks pinch zoom */
         }
         
-        .hero-bg::before {
-            content: '';
+        .logo-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        .player-container {
+            background: #000;
+            position: relative;
+            height: calc(100vh - 76px);
+            overflow: hidden;
+        }
+        
+        .crop-wrapper {
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background: radial-gradient(circle at 50% 20%, rgba(255, 69, 0, 0.25) 0%, transparent 70%);
-            animation: firePulse 8s infinite alternate;
+            inset: 0;
+            overflow: hidden;
         }
         
-        @keyframes firePulse {
-            0% { opacity: 0.6; transform: scale(1); }
-            100% { opacity: 1; transform: scale(1.08); }
-        }
-        
-        .flame {
-            font-size: 7rem;
-            animation: flameFlicker 1.2s infinite alternate;
-            display: inline-block;
-            filter: drop-shadow(0 0 40px #ff4500);
-        }
-        
-        @keyframes flameFlicker {
-            0% { transform: rotate(-8deg) scale(1); }
-            100% { transform: rotate(8deg) scale(1.05); }
-        }
-        
-        .nav-link {
-            transition: all 0.3s;
-        }
-        
-        .nav-link:hover {
-            color: #ff4500;
-            transform: translateY(-2px);
-        }
-        
-        .feature-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-15px) scale(1.03);
-            box-shadow: 0 30px 60px -15px rgba(255, 69, 0, 0.4);
-        }
-        
-        .download-btn {
-            background: linear-gradient(90deg, #ff4500, #ff8c00);
-            animation: pulseBtn 2s infinite;
-        }
-        
-        @keyframes pulseBtn {
-            0%, 100% { box-shadow: 0 0 30px #ff4500; }
-            50% { box-shadow: 0 0 60px #ff8c00; }
-        }
-        
-        .section-title {
-            font-family: 'Playfair Display', serif;
-        }
-        
-        /* FIX: Scroll indicator no longer overlaps */
-        .scroll-indicator {
+        .crop-wrapper iframe {
             position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
+            width: 200%;          /* makes sides smaller in view */
+            height: 160%;         /* makes top/bottom smaller in view */
+            left: -50%;           /* centers the video (hides left ad + right chat) */
+            top: -18%;            /* hides top CricHD bar */
+            border: 0;
+            filter: contrast(1.08) saturate(1.05);
+        }
+        
+        /* No user zoom / scroll */
+        html, body {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
         }
     </style>
 </head>
-<body class="bg-black text-white overflow-x-hidden">
+<body class="bg-black text-white">
 
-    <!-- NAVBAR -->
-    <nav class="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-xl border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+    <!-- AAG Header -->
+    <header class="fixed top-0 left-0 right-0 z-50 bg-black/95 backdrop-blur-xl border-b border-orange-600/30">
+        <div class="max-w-screen-2xl mx-auto px-6 py-4 flex items-center justify-between">
             <div class="flex items-center gap-3">
-                <span class="text-4xl">🔥</span>
+                <div class="w-9 h-9 bg-orange-500 rounded-2xl flex items-center justify-center text-4xl shadow-lg">🔥</div>
                 <div>
-                    <span class="text-3xl font-black tracking-tighter">AAG</span>
+                    <h1 class="logo-font text-3xl font-bold tracking-tighter">AAG</h1>
+                    <p class="text-[10px] text-orange-400 -mt-1 tracking-widest font-mono">LIVE</p>
                 </div>
             </div>
-            
-            <div class="hidden md:flex items-center gap-10 text-sm font-medium">
-                <a href="#features" class="nav-link">Features</a>
-                <a href="#cricket" class="nav-link">Live Cricket</a>
-                <a href="#games" class="nav-link">Games</a>
-                <a href="#chat" class="nav-link">Chat</a>
-            </div>
-            
-            <a href="https://apk.e-droid.net/apk/app3951819-6wxjyq.apk?v=2" 
-               target="_blank"
-               class="download-btn px-8 py-3 rounded-2xl font-bold text-lg flex items-center gap-3 hover:scale-105 transition-all">
-                <i class="fas fa-download"></i>
-                DOWNLOAD APK
-            </a>
-        </div>
-    </nav>
-
-    <!-- HERO INTRO (overlap fixed) -->
-    <section class="hero-bg min-h-screen flex items-center pt-20">
-        <div class="max-w-7xl mx-auto px-6 text-center relative z-20">
-            <div class="flex justify-center mb-6">
-                <span class="flame">🔥</span>
-            </div>
-            
-            <h1 class="text-7xl md:text-8xl font-black tracking-tighter mb-4 leading-none">
-                AAG APP
-            </h1>
-            
-            <p class="text-4xl md:text-5xl font-bold text-orange-400 mb-8 tracking-tight">
-                WHERE THE FIRE NEVER STOPS
-            </p>
-            
-            <div class="max-w-2xl mx-auto text-xl text-gray-300 mb-12">
-                Watch the best videos • Stream LIVE Cricket for FREE • Play epic games • Chat with millions
-            </div>
-            
-            <!-- Buttons container with extra spacing -->
-            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-24">
-                <a href="https://apk.e-droid.net/apk/app3951819-6wxjyq.apk?v=2" 
-                   target="_blank"
-                   class="download-btn text-2xl px-16 py-6 rounded-3xl font-black flex items-center gap-4 hover:scale-110 transition-all shadow-2xl w-full sm:w-auto">
-                    <i class="fas fa-download text-3xl"></i>
-                    <div>
-                        <div>DOWNLOAD NOW</div>
-                        <div class="text-sm font-normal tracking-widest text-orange-200">FREE • 100% SAFE • 35MB</div>
-                    </div>
-                </a>
-                
-                <button onclick="document.getElementById('features').scrollIntoView({behavior:'smooth'})" 
-                        class="border border-white/60 hover:border-orange-500 px-10 py-6 rounded-3xl text-lg font-semibold transition-all w-full sm:w-auto">
-                    SEE THE FIRE 🔥
+            <div class="flex items-center gap-4 text-xs font-mono">
+                <div class="flex items-center gap-2 bg-green-500/10 px-4 py-1 rounded-3xl border border-green-500/30">
+                    <div class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                    LIVE
+                </div>
+                <button onclick="toggleFullscreen()" 
+                        class="bg-white/10 hover:bg-white/20 px-5 py-2 rounded-3xl flex items-center gap-2 text-sm">
+                    FULLSCREEN
                 </button>
             </div>
-            
-            <div class="flex justify-center gap-8 text-sm opacity-70">
-                <div class="flex items-center gap-2"><i class="fas fa-check"></i> 50M+ Downloads</div>
-                <div class="flex items-center gap-2"><i class="fas fa-check"></i> 4.9★ Rating</div>
-            </div>
-            
-            <!-- Floating icons -->
-            <div class="absolute bottom-32 right-10 hidden lg:block text-6xl animate-bounce">🏏</div>
-            <div class="absolute top-40 left-10 hidden xl:block text-6xl animate-spin-slow">🎮</div>
         </div>
-        
-        <!-- FIXED SCROLL INDICATOR - no overlap -->
-        <div class="scroll-indicator text-center">
-            <div class="text-xs tracking-[4px] mb-2 text-orange-300">SCROLL FOR FIRE</div>
-            <div class="w-px h-16 bg-gradient-to-b from-transparent via-orange-500 to-transparent mx-auto"></div>
-        </div>
-    </section>
+    </header>
 
-    <!-- FEATURES SECTION -->
-    <section id="features" class="py-24 bg-zinc-950">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-16">
-                <span class="px-6 py-2 bg-orange-500/10 text-orange-400 text-sm font-bold tracking-widest rounded-full">🔥 WHAT'S INSIDE AAG</span>
-                <h2 class="section-title text-6xl font-bold mt-6">Everything You Love In One App</h2>
-            </div>
-            
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="feature-card bg-zinc-900 rounded-3xl p-8 border border-white/10">
-                    <div class="w-16 h-16 bg-red-600/20 flex items-center justify-center rounded-2xl text-4xl mb-8">📺</div>
-                    <h3 class="text-3xl font-bold mb-3">Best Videos</h3>
-                    <p class="text-gray-400">Trending shorts, movies, web series, music &amp; more — all in 4K quality.</p>
-                </div>
-                
-                <div id="cricket" class="feature-card bg-zinc-900 rounded-3xl p-8 border border-white/10">
-                    <div class="w-16 h-16 bg-green-600/20 flex items-center justify-center rounded-2xl text-4xl mb-8">🏏</div>
-                    <h3 class="text-3xl font-bold mb-3">Free Cricket Streaming</h3>
-                    <p class="text-gray-400">Watch LIVE IPL, T20, World Cup &amp; international matches in HD.</p>
-                </div>
-                
-                <div id="games" class="feature-card bg-zinc-900 rounded-3xl p-8 border border-white/10">
-                    <div class="w-16 h-16 bg-purple-600/20 flex items-center justify-center rounded-2xl text-4xl mb-8">🎮</div>
-                    <h3 class="text-3xl font-bold mb-3">Epic Games</h3>
-                    <p class="text-gray-400">BGMI, Free Fire, Ludo, Carrom + hundreds more.</p>
-                </div>
-                
-                <div id="chat" class="feature-card bg-zinc-900 rounded-3xl p-8 border border-white/10">
-                    <div class="w-16 h-16 bg-blue-600/20 flex items-center justify-center rounded-2xl text-4xl mb-8">💬</div>
-                    <h3 class="text-3xl font-bold mb-3">Live Chat</h3>
-                    <p class="text-gray-400">Real-time chat during matches &amp; gaming rooms.</p>
-                </div>
-            </div>
+    <!-- Cropped Video Player (ONLY the exact video area visible) -->
+    <div class="player-container pt-[76px]">
+        <div class="crop-wrapper">
+            <iframe 
+                id="mainPlayer"
+                src="https://dadocric.st/player.php?id=starsp3"
+                allowfullscreen
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                sandbox="allow-scripts allow-same-origin allow-presentation"
+                scrolling="no">
+            </iframe>
         </div>
-    </section>
-
-    <!-- BIG DOWNLOAD BANNER -->
-    <section class="py-20 bg-gradient-to-r from-orange-900 via-red-900 to-black">
-        <div class="max-w-5xl mx-auto px-6 text-center">
-            <div class="text-5xl mb-6">🔥</div>
-            <h2 class="text-5xl font-black mb-6">Ready to feel the heat?</h2>
-            <p class="text-2xl text-orange-200 mb-10 max-w-lg mx-auto">Join 50 million+ users who already made AAG their daily addiction.</p>
-            
-            <a href="https://apk.e-droid.net/apk/app3951819-6wxjyq.apk?v=2" 
-               target="_blank"
-               class="inline-flex items-center gap-5 bg-white text-black font-black text-3xl px-20 py-8 rounded-3xl hover:scale-110 transition-all shadow-2xl">
-                <span>DOWNLOAD AAG APP</span>
-                <span class="text-5xl">🔥</span>
-            </a>
-            
-            <div class="mt-10 text-sm text-orange-300/70">Android 7.0+ • 35MB only • Instant Install</div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-black border-t border-white/10 py-16">
-        <div class="max-w-7xl mx-auto px-6 text-center">
-            <div class="flex justify-center items-center gap-3 mb-8">
-                <span class="text-5xl">🔥</span>
-                <span class="text-4xl font-black">AAG</span>
-            </div>
-            
-            <div class="text-gray-500 text-sm mb-6">
-                AAG App © 2026 • All rights reserved<br>
-                Best Videos • Free Cricket • Epic Games • Live Chat
-            </div>
-            
-            <a href="https://apk.e-droid.net/apk/app3951819-6wxjyq.apk?v=2" 
-               target="_blank"
-               class="text-orange-400 hover:text-orange-300 font-medium flex items-center justify-center gap-2 mx-auto w-fit">
-                <i class="fas fa-download"></i>
-                Download Latest Version
-            </a>
-        </div>
-    </footer>
+    </div>
 
     <script>
-        // Fire confetti on download
-        document.querySelectorAll('a[href*="apk.e-droid"]').forEach(link => {
-            link.addEventListener('click', () => createFireConfetti());
-        });
-        
-        function createFireConfetti() {
-            for (let i = 0; i < 80; i++) {
-                setTimeout(() => {
-                    const emoji = document.createElement('div');
-                    emoji.textContent = ['🔥','🏏','🎮','💥'][Math.floor(Math.random()*4)];
-                    emoji.style.position = 'fixed';
-                    emoji.style.left = Math.random() * 100 + 'vw';
-                    emoji.style.top = '-20px';
-                    emoji.style.fontSize = '2rem';
-                    emoji.style.zIndex = '9999';
-                    emoji.style.pointerEvents = 'none';
-                    emoji.style.transition = 'all 3s cubic-bezier(0.4, 0, 1, 1)';
-                    document.body.appendChild(emoji);
-                    
-                    setTimeout(() => {
-                        emoji.style.transform = `translate(${Math.random()*80 - 40}px, ${window.innerHeight + 100}px) rotate(${Math.random()*720}deg)`;
-                        emoji.style.opacity = '0';
-                    }, 50);
-                    
-                    setTimeout(() => emoji.remove(), 3500);
-                }, i * 4);
+        // Loader
+        const loader = document.createElement('div');
+        loader.innerHTML = `
+            <div class="absolute inset-0 bg-black/80 flex items-center justify-center z-50">
+                <div class="text-center">
+                    <div class="w-14 h-14 border-4 border-orange-500 border-t-transparent rounded-full animate-spin mx-auto"></div>
+                    <p class="mt-5 text-orange-300 text-xs tracking-[2px] font-mono">LOADING AAG STREAM...</p>
+                </div>
+            </div>`;
+        document.body.appendChild(loader);
+
+        document.getElementById('mainPlayer').onload = () => {
+            setTimeout(() => {
+                loader.style.opacity = '0';
+                setTimeout(() => loader.remove(), 600);
+            }, 1000);
+        };
+
+        // Fullscreen
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                document.exitFullscreen();
             }
         }
-        
-        document.addEventListener('keydown', e => { if (e.key.toLowerCase() === 'f') createFireConfetti(); });
-        
-        window.onload = () => {
-            console.log('%c🔥 AAG APP Landing Page Ready! Press "F" for fire!', 'color:#ff4500; font-family:monospace');
-        };
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', e => {
+            if (e.key.toLowerCase() === 'f') toggleFullscreen();
+            if (e.key.toLowerCase() === 'r') location.reload();
+        });
+
+        // Block all redirects & popups (already in sandbox)
+        console.log('%cAAG 🔥 - Video zoomed exactly | Redirects blocked | User zoom disabled', 'color:#FF6600; font-family:monospace');
     </script>
 </body>
 </html>
-
